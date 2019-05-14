@@ -1,0 +1,64 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=4.5cm,bottom=4.5cm}
+\begin{document}
+\fontsize{12pt}{20pt}\selectfont
+Considering the equation
+\begin{equation}
+  \frac{\partial u}{\partial t}+c\frac{\partial u}{\partial x}=0
+\end{equation}
+
+Here, $u=u(x,t)$ is the unkown function; $c$ is the convectional velocity. It determines the velocity of the wave broadcasting along the $x$ direction.
+The boundary condition is:
+\begin{equation}
+  u(0, t)=1; u(L_x, t)=0.
+\end{equation}
+
+$0$ is the left boundary condition and $L_x$ is the right one.
+The initial condition is:
+\begin{equation}
+  \begin{split}
+  &u(x, 0)=1 \qquad   x\le L_x/2\\
+  &u(x, t)=0 \qquad   x\ge L_x/2.
+  \end{split}
+\end{equation}
+
+At first, we write the equation to a standard form such as:
+\begin{equation}
+  \frac{\partial u}{\partial t}=-c\frac{\partial u}{\partial x}
+\end{equation}
+Obviously, the right hand is the spatial terms of the equation and the left hand is the temporal variation. Here, we call the right hand ``RHS''.
+
+Now, we use the 1-order scheme in both spatial and temporal direction.
+After the explicit discretization, the equation becomes :
+\begin{equation}
+\frac{u^{n+1}_i-u^n_i}{\Delta t}=-c\frac{u_i^n-u_{i-1}^n}{\Delta x}=RHS
+\end{equation}
+here, the superscript dominates the temporal discretization and the subscript dominates the spatial one. $\Delta t$ is the time step and the $\Delta x$ is the spatial mesh scale.
+
+ We let the $n-1$ terms to the left hand and the $n$ terms to the right hand. we obtained:
+\begin{equation}
+u^{n+1}_i=u^n_i+\Delta t RHS
+\end{equation}
+And then, the next time $u(x, t)$ can be obtained by this formulation.
+
+However, the time step $\Delta t$ must satisfy some extra condition for the numerical statility. The condition we call it ``CFL condition''. It will be introducted in the following discussion. Here, the CFL condition is:
+\begin{equation}
+  \Delta t\le \Delta x/c
+\end{equation}
+we often use the following form:
+\begin{equation}
+  \Delta t=C_{cfl}\Delta x/c
+\end{equation}
+the $C_{cfl}$ is ``the Courant Number''. For the explicit scheme, $C_{cfl}\le 1$.
+\newline
+\textbf{Homework}\\
+1. Programme and Compute $u(x,t)$. Draw the function in the tecplot.\\
+2. Discuss the relationship among the parameter: $\Delta t, \Delta x$ and $c$. Find What happens when the CFL condition is not satified.\\
+3. Try to use the central scheme in the spatial direction and find that if it is stable. \\
+4. Modify the Programme, solve the equation \\
+\begin{equation}
+\frac {\partial u}{\partial t}+c\frac {\partial u}{\partial x}=\mu \frac {\partial^2 u}{\partial x^2}
+\end{equation}
+\end{document}
