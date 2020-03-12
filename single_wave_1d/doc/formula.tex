@@ -10,17 +10,17 @@ Considering the equation
 \end{equation}
 
 Here, $u=u(x,t)$ is the unkown function; $c$ is the convectional velocity. It determines the velocity of the wave broadcasting along the $x$ direction.
-The boundary condition is:
-\begin{equation}
-  u(0, t)=1; u(L_x, t)=0.
-\end{equation}
+% The boundary condition is:
+% \begin{equation}
+%   u(0, t)=1; %u(L_x, t)=0.
+% \end{equation}
 
-$0$ is the left boundary condition and $L_x$ is the right one.
+$one$ is the left boundary condition and $L_x$ is the right zero.
 The initial condition is:
 \begin{equation}
   \begin{split}
   &u(x, 0)=1 \qquad   x\le L_x/2\\
-  &u(x, t)=0 \qquad   x\ge L_x/2.
+  &u(x, 0)=0 \qquad   x\ge L_x/2.
   \end{split}
 \end{equation}
 
@@ -57,7 +57,7 @@ the $C_{cfl}$ is ``the Courant Number''. For the explicit scheme, $C_{cfl}\le 1$
 1. Programme and Compute $u(x,t)$. Draw the function in the tecplot.\\
 2. Discuss the relationship among the parameter: $\Delta t, \Delta x$ and $c$. Find What happens when the CFL condition is not satified.\\
 3. Try to use the central scheme in the spatial direction and find that if it is stable. \\
-4. Using different scheme for solving the problem.
+4. Using different scheme for solving the problem.\\
 5. Modify the Programme, solve the equation \\
 \begin{equation}
 \frac {\partial u}{\partial t}+c\frac {\partial u}{\partial x}=\mu \frac {\partial^2 u}{\partial x^2}

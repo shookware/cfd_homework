@@ -90,14 +90,17 @@ contains
     rhs=0.0d0
     n=this%wave%n
     do while (t0<= time)
-      call this%eqn%GetRHS(this%wave, this%dx, rhs)
-      dt=this%GetDt()
+      call this%eqn%GetRHS(this%wave, this%dx, rhs) !计算右端项
+      dt=this%GetDt() !时间步长
       !print*, dt
       !print*, rhs
       !pause
+
+      !时间推进
       this%wave%u(1:n-1)=this%wave%u(1:n-1)+dt*rhs  !!! u^{n+1}=u^{n}+dt*RHS
-      this%wave%u(0)=this%bc(1) !! updating the b.c.
-      this%wave%u(n)=this%bc(2)
+      
+      !this%wave%u(0)=this%bc(1) !! updating the b.c.
+      !this%wave%u(n)=this%bc(2)
       t0=t0+dt
     enddo
 

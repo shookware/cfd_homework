@@ -16,12 +16,18 @@ program single_wave_1d
   real(8), parameter :: ZERO=0.0d0
 
 !!!!初始化
-  call solver%Initial(N, LX, Xstart, Xend, Uvalue)
-  call eqn%setC(C)
+  call solver%Initial(N, LX, Xstart, Xend, Uvalue) !初值
+  
+ !! 定义方程 （空间差分离散）
+  call eqn%setC(C) 
   call solver%SetEqn(Eqn)
+!! 计算时间步长
   call solver%SetCFL(CFL)
-  call solver%SetBC(Uvalue, ZERO)
+
+  !call solver%SetBC(Uvalue, ZERO)
+  !! 推进求解
   call solver%Advance(TIME)
+  
   call solver%Print()
 
 end program single_wave_1d
