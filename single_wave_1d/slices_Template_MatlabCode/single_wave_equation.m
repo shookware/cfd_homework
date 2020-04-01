@@ -8,8 +8,13 @@ dx=L/N; % compute the spatial step
 x=(0:N)'/N*L; % x positions
 
 %initialize
-u=zeros(N+1,1); 
-u(1:20)=1.0;  %if L(20)=L_1
+u=zeros(N+1,1);
+xl=0.4;  %L_1
+for i=1:N+1
+    if x(i)<=xl 
+        u(i)=1.0;  %if L(20)=L_1
+    end
+end
 
 % set the phase velocity
 c=0.5;
@@ -27,7 +32,15 @@ while (t<time)
     t=t+dt
 end
 
-plot(x, un); %plot the result
+%exact solution
+xl=0.4+c*time;  %L_1
+for i=1:N+1
+    if x(i)<=xl 
+        u(i)=1.0;  %if L(20)=L_1
+    end
+end
+
+plot(x, un, x, u); %plot the result
 end
 
 function rhs=spatial_difference(N, un, dx, c)
@@ -41,7 +54,4 @@ end
 function unp=temporal_advance(un, dt, rhs)
     unp=un+dt*rhs;
 end
-
-
-
 
